@@ -1,0 +1,1119 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#c87580"><link rel="manifest" href="manifest.webmanifest"><title>Chaoskeeper</title><style>
+:root{--bg:#f3eee6;--card:#fbf8f2;--ink:#2f2b27;--muted:#82796f;--line:#d8cfc3;--pink:#8f877b;--soft:#ebe4da;--green:#f1f0e9;--gold:#f6f0e3}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:"Avenir Next","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}button,input,select{font:inherit}.app{max-width:760px;margin:auto;padding:92px 16px 92px}.global-header{position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(760px,100%);height:72px;background:#fbf6f3ee;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:15;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}.global-header .brand{font-size:25px;font-weight:750;letter-spacing:-.035em}.global-header .muted{text-align:right}.head{display:flex;justify-content:space-between;align-items:center}.brand{font-size:30px;font-weight:750;letter-spacing:-.035em}.muted{color:var(--muted);font-size:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;margin:12px 0;box-shadow:0 8px 24px #4d2e2610}.card h3{font-size:13px;font-weight:750;letter-spacing:.075em;margin:0 0 10px}.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #f2e9e5}.row:last-child{border:0}.grow{flex:1}.time{width:62px;color:var(--muted);font-size:13px}.house{background:var(--green)}.money{background:var(--gold)}.meal{background:#fff8f5}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#fffc;border-top:1px solid var(--line);backdrop-filter:blur(14px);padding:8px 6px 12px}.nav button{border:0;background:none;color:#6f6561;padding:5px}.nav .active{color:var(--pink);font-weight:800}.plus{background:var(--pink)!important;color:white!important;width:48px;height:48px;border-radius:50%;font-size:26px;margin:auto}.hidden{display:none!important}.jump{display:flex;gap:7px;overflow:auto;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:4}.jump button,.pill{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:999px;padding:7px 10px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mini{text-align:center;background:#fcf7f5;border-radius:14px;padding:10px}.mini b{display:block;font-size:18px}.modal{position:fixed;inset:0;background:#20191855;z-index:20;display:flex;align-items:flex-end}.sheet{width:min(760px,100%);margin:auto;background:white;border-radius:26px 26px 0 0;padding:18px 16px 28px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.action{border:1px solid var(--line);background:white;border-radius:17px;padding:18px;text-align:left;font-weight:750}.field{width:100%;padding:12px;border:1px solid var(--line);border-radius:13px;margin:6px 0}.primary{width:100%;border:0;border-radius:14px;background:var(--pink);color:white;padding:13px;font-weight:800}.link{border:0;background:none;color:var(--pink);font-weight:750}.completed{opacity:.75}
+
+.brand{font-family:Didot,"Bodoni 72","Times New Roman",serif!important;text-transform:uppercase;letter-spacing:.22em!important;font-weight:400!important;font-size:22px!important}
+.global-header{background:rgba(243,238,230,.94)!important;border-bottom:1px solid var(--line)!important}
+.card{background:var(--card)!important;border:1px solid var(--line)!important;box-shadow:0 5px 18px rgba(70,60,50,.045)!important;border-radius:16px!important}
+.card h3{font-family:Didot,"Bodoni 72","Times New Roman",serif!important;font-weight:400!important;letter-spacing:.17em!important}
+.pill{background:var(--soft)!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+.nav{background:rgba(251,248,242,.96)!important;border-top:1px solid var(--line)!important}
+.nav button{font-size:11px!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:var(--muted)!important}
+input,select{background:#fffdf9!important;border:1px solid var(--line)!important;color:var(--ink)!important}
+.editorial-tagline{font-family:Didot,"Bodoni 72","Times New Roman",serif;font-style:italic;font-size:12px;letter-spacing:.06em;color:var(--muted);margin-top:4px}
+.botanical-rule{display:flex;align-items:center;gap:8px;color:var(--muted);font-family:Didot,serif}
+.botanical-rule:before,.botanical-rule:after{content:"";height:1px;background:var(--line);width:22px}
+
+.fab{
+  width:64px!important;
+  height:64px!important;
+  min-width:64px!important;
+  border-radius:50%!important;
+  background:#3b3732!important;
+  color:#fffdf9!important;
+  border:2px solid #3b3732!important;
+  box-shadow:0 5px 16px rgba(47,43,39,.22)!important;
+  font-family:Arial,sans-serif!important;
+  font-size:38px!important;
+  font-weight:700!important;
+  line-height:1!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 0 5px 0!important;
+  opacity:1!important;
+}
+.fab:hover,.fab:focus{background:#2f2b27!important;color:#ffffff!important}
+
+.nav .plus{
+  background:#3b3732!important;
+  color:#fffdf9!important;
+  width:62px!important;
+  height:62px!important;
+  min-width:62px!important;
+  min-height:62px!important;
+  border-radius:50%!important;
+  border:2px solid #3b3732!important;
+  box-shadow:0 5px 16px rgba(47,43,39,.24)!important;
+  font-family:Arial,sans-serif!important;
+  font-size:40px!important;
+  font-weight:700!important;
+  line-height:54px!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  padding:0!important;
+  margin:-10px auto 0!important;
+  display:block!important;
+  opacity:1!important;
+}
+
+.nav .plus{
+  background:#6f685f!important;
+  color:#fffdf9!important;
+  width:52px!important;
+  height:52px!important;
+  min-width:52px!important;
+  min-height:52px!important;
+  border-radius:50%!important;
+  border:1px solid #6f685f!important;
+  box-shadow:0 3px 10px rgba(47,43,39,.14)!important;
+  font-family:Arial,sans-serif!important;
+  font-size:30px!important;
+  font-weight:600!important;
+  line-height:48px!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  padding:0!important;
+  margin:-4px auto 0!important;
+  display:block!important;
+}
+
+/* Keep Chaoskeeper header and bottom navigation visible while page content scrolls */
+.global-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  z-index:1000!important;
+}
+.nav{
+  position:fixed!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:1000!important;
+}
+body{
+  padding-top:78px!important;
+  padding-bottom:92px!important;
+}
+
+.global-header{
+  position:fixed!important;
+  top:0!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  box-sizing:border-box!important;
+  z-index:1000!important;
+}
+.nav{
+  position:fixed!important;
+  bottom:0!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  box-sizing:border-box!important;
+  z-index:1000!important;
+}
+body{
+  overflow-x:hidden!important;
+  padding-top:78px!important;
+  padding-bottom:96px!important;
+}
+.wrap{
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+
+html,body{
+  height:100%!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+body{
+  padding:0!important;
+}
+.global-header{
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:72px!important;
+  box-sizing:border-box!important;
+  z-index:9999!important;
+}
+.nav{
+  position:absolute!important;
+  bottom:0!important;
+  left:0!important;
+  right:0!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+  z-index:9999!important;
+}
+.wrap{
+  position:absolute!important;
+  top:72px!important;
+  bottom:78px!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  max-width:760px!important;
+  margin:0 auto!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  box-sizing:border-box!important;
+  padding-bottom:24px!important;
+}
+
+html,body{
+  height:auto!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+body{
+  padding-top:78px!important;
+  padding-bottom:96px!important;
+}
+.global-header{
+  position:fixed!important;
+  top:0!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  max-width:760px!important;
+  height:auto!important;
+  box-sizing:border-box!important;
+  z-index:1000!important;
+}
+.nav{
+  position:fixed!important;
+  bottom:0!important;
+  left:50%!important;
+  right:auto!important;
+  top:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  max-width:760px!important;
+  box-sizing:border-box!important;
+  z-index:1000!important;
+}
+.wrap{
+  position:static!important;
+  top:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  right:auto!important;
+  width:100%!important;
+  max-width:760px!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+
+body{padding-top:64px!important;}
+.wrap{padding-top:6px!important;}
+body{padding-top:58px!important}.wrap{padding-top:2px!important}body{padding-top:52px!important}.wrap{padding-top:0!important}body{padding-top:48px!important}.wrap{padding-top:0!important}
+body{padding-top:66px!important;}
+.wrap{padding-top:10px!important;}
+
+body{
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.app{
+  padding-top:92px!important;
+  padding-bottom:92px!important;
+}
+
+.quick-sheet{background:var(--card)!important;border:1px solid var(--line);border-bottom:0;padding:22px 18px 30px!important}
+.quick-title{font-family:Didot,"Bodoni 72","Times New Roman",serif!important;font-size:21px!important;font-weight:400!important;letter-spacing:.17em!important;margin:0 0 4px!important}
+.quick-sub{font-family:Didot,"Bodoni 72","Times New Roman",serif;font-style:italic;color:var(--muted);font-size:13px}
+.brain-hero{width:100%;text-align:left;background:var(--soft)!important;border:1px solid var(--line)!important;border-radius:16px!important;padding:15px 16px!important;margin:16px 0 12px!important;color:var(--ink)!important}
+.brain-label{display:block;font-family:Didot,"Bodoni 72","Times New Roman",serif;letter-spacing:.16em;font-size:15px}
+.brain-copy{display:block;color:var(--muted);font-size:13px;margin-top:4px;font-style:italic}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.quick-grid .action{background:#fffdf9!important;border:1px solid var(--line)!important;border-radius:14px!important;padding:14px 13px!important;font-weight:500!important;font-size:14px!important;color:var(--ink)!important;text-transform:none!important;letter-spacing:0!important}
+.quick-form-label{font-family:Didot,"Bodoni 72","Times New Roman",serif;letter-spacing:.14em;margin:15px 0 7px;color:var(--ink)}
+.quick-back{width:100%;border:0;background:none!important;color:var(--muted)!important;padding:12px;font-size:13px}
+.quick-sheet .primary{background:#6f685f!important;color:#fffdf9!important;font-weight:600!important}
+
+html,body{
+  height:100%!important;
+  min-height:100%!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+body{
+  padding:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  background:var(--bg)!important;
+}
+.global-header{
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  flex:0 0 auto!important;
+  z-index:1000!important;
+}
+.app{
+  position:relative!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding-top:18px!important;
+  padding-bottom:24px!important;
+  width:100%!important;
+  max-width:760px!important;
+  margin:0 auto!important;
+  box-sizing:border-box!important;
+}
+.nav{
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  flex:0 0 auto!important;
+  z-index:1000!important;
+  padding-bottom:max(12px, env(safe-area-inset-bottom))!important;
+}
+
+html,body{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  height:100%!important;
+  height:100dvh!important;
+  overflow:hidden!important;
+}
+body{
+  display:grid!important;
+  grid-template-rows:72px minmax(0,1fr) 72px!important;
+  background:var(--bg)!important;
+}
+.global-header{
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  width:100%!important;
+  height:72px!important;
+  min-height:72px!important;
+  max-height:72px!important;
+  padding:12px 30px 9px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.brand{
+  margin:0!important;
+  line-height:1.05!important;
+}
+.editorial-tagline{
+  margin-top:5px!important;
+  line-height:1.05!important;
+}
+.app{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  max-width:760px!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:16px 30px 22px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  box-sizing:border-box!important;
+}
+.nav{
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  width:100%!important;
+  height:72px!important;
+  min-height:72px!important;
+  max-height:72px!important;
+  margin:0!important;
+  padding:7px 18px max(8px,env(safe-area-inset-bottom))!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  align-items:center!important;
+  overflow:visible!important;
+}
+
+/* Restored pre-scroll-shell layout */
+html,body{
+  height:auto!important;
+  min-height:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+body{
+  display:block!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.global-header{
+  position:fixed!important;
+  top:0!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  max-width:760px!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  padding:12px 16px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  overflow:visible!important;
+  z-index:1000!important;
+}
+.app{
+  position:static!important;
+  width:100%!important;
+  max-width:760px!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding-top:92px!important;
+  padding-bottom:92px!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+.nav{
+  position:fixed!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:0!important;
+  top:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  max-width:760px!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:8px 6px 12px!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  align-items:center!important;
+  overflow:visible!important;
+  z-index:1000!important;
+}
+
+/* Keep current Chaoskeeper header size; pin it during scrolling */
+.global-header{
+  position:sticky!important;
+  position:-webkit-sticky!important;
+  top:0!important;
+  left:auto!important;
+  right:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:760px!important;
+  margin:0 auto!important;
+  z-index:5000!important;
+  padding:12px 16px!important;
+  box-sizing:border-box!important;
+  background:rgba(243,238,230,.98)!important;
+}
+body{
+  padding-top:0!important;
+}
+.app{
+  padding-top:20px!important;
+}
+
+/* Header behavior: preserve current visual proportions and keep it stationary */
+.global-header{
+  position:fixed!important;
+  top:0!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,760px)!important;
+  max-width:760px!important;
+  z-index:5000!important;
+  padding:12px 16px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  background:rgba(243,238,230,.98)!important;
+}
+.brand{
+  font-size:22px!important;
+  line-height:1.1!important;
+  letter-spacing:.22em!important;
+}
+.editorial-tagline{
+  font-size:12px!important;
+  line-height:1.15!important;
+  margin-top:4px!important;
+}
+/* Reserve exactly the header's footprint so HOME begins in the same place */
+.app{
+  padding-top:92px!important;
+}
+
+/* iPhone-safe pinned header */
+.global-header{
+  position:-webkit-sticky!important;
+  position:sticky!important;
+  top:0!important;
+  left:auto!important;
+  right:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:760px!important;
+  margin:0 auto!important;
+  padding:12px 16px!important;
+  z-index:5000!important;
+  box-sizing:border-box!important;
+  background:rgba(243,238,230,.98)!important;
+}
+.brand{
+  font-size:22px!important;
+  line-height:1.1!important;
+  letter-spacing:.22em!important;
+}
+.editorial-tagline{
+  font-size:12px!important;
+  line-height:1.15!important;
+  margin-top:4px!important;
+}
+.app{
+  padding-top:20px!important;
+}
+
+/* Reliable stationary top header — mirrors the working bottom-nav behavior */
+.global-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  bottom:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:74px!important;
+  min-height:74px!important;
+  padding:12px 30px 10px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  background:#f3eee6!important;
+  border-bottom:1px solid var(--line)!important;
+  z-index:99999!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.brand{
+  font-size:22px!important;
+  line-height:1.05!important;
+  letter-spacing:.22em!important;
+}
+.editorial-tagline{
+  font-size:12px!important;
+  line-height:1.1!important;
+  margin-top:5px!important;
+}
+.app{
+  padding-top:94px!important;
+}
+
+/* CK shell v3: both bars always visible; only middle scrolls */
+html, body {
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+  background:var(--bg)!important;
+}
+body{
+  position:relative!important;
+  height:100vh!important;
+  height:100svh!important;
+  overflow:hidden!important;
+}
+.global-header{
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  bottom:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:74px!important;
+  min-height:74px!important;
+  max-height:74px!important;
+  padding:12px 30px 10px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  background:#f3eee6!important;
+  border-bottom:1px solid var(--line)!important;
+  z-index:10000!important;
+  overflow:hidden!important;
+}
+.brand{
+  font-size:22px!important;
+  line-height:1.05!important;
+  letter-spacing:.22em!important;
+}
+.editorial-tagline{
+  font-size:12px!important;
+  line-height:1.1!important;
+  margin-top:5px!important;
+}
+.app{
+  position:absolute!important;
+  top:74px!important;
+  bottom:74px!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  max-width:760px!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:18px 30px 24px!important;
+  box-sizing:border-box!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+}
+.nav{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  top:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:74px!important;
+  min-height:74px!important;
+  max-height:74px!important;
+  margin:0!important;
+  padding:7px 18px 10px!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  align-items:center!important;
+  background:#fbf8f2!important;
+  border-top:1px solid var(--line)!important;
+  z-index:10000!important;
+  overflow:visible!important;
+}
+
+/* CK shell v4 — compact header + fully visible footer */
+html,body{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  height:100%!important;
+  height:100svh!important;
+  overflow:hidden!important;
+  background:var(--bg)!important;
+}
+body{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.global-header{
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+  padding:8px 30px 7px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  background:#f3eee6!important;
+  border-bottom:1px solid var(--line)!important;
+  z-index:10000!important;
+  overflow:hidden!important;
+}
+.brand{
+  font-size:18px!important;
+  line-height:1!important;
+  letter-spacing:.21em!important;
+  margin:0!important;
+}
+.editorial-tagline{
+  font-size:10px!important;
+  line-height:1!important;
+  margin-top:4px!important;
+}
+.brand-mark{
+  transform:scale(.82)!important;
+  transform-origin:right center!important;
+}
+.app{
+  position:absolute!important;
+  top:58px!important;
+  bottom:82px!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  max-width:760px!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:18px 30px 24px!important;
+  box-sizing:border-box!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+}
+.nav{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  top:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:82px!important;
+  min-height:82px!important;
+  max-height:82px!important;
+  margin:0!important;
+  padding:6px 18px max(12px,env(safe-area-inset-bottom))!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  align-items:start!important;
+  background:#fbf8f2!important;
+  border-top:1px solid var(--line)!important;
+  z-index:10000!important;
+  overflow:visible!important;
+}
+.nav > *{
+  align-self:start!important;
+}
+.nav .plus{
+  margin:-3px auto 0!important;
+}
+
+/* CK shell v5 — tighter header top spacing + taller bottom nav */
+.global-header{
+  height:52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  padding:3px 30px 5px!important;
+}
+.brand{
+  font-size:18px!important;
+  line-height:1!important;
+  letter-spacing:.21em!important;
+}
+.editorial-tagline{
+  font-size:10px!important;
+  line-height:1!important;
+  margin-top:3px!important;
+}
+.app{
+  top:52px!important;
+  bottom:94px!important;
+}
+.nav{
+  height:94px!important;
+  min-height:94px!important;
+  max-height:94px!important;
+  padding:10px 18px max(16px,env(safe-area-inset-bottom))!important;
+  align-items:start!important;
+}
+.nav .plus{
+  margin:-1px auto 0!important;
+}
+
+/* CK shell v6 — keep logo type large, remove header dead space, lift footer */
+.global-header{
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  padding:0 30px 5px!important;
+  align-items:flex-end!important;
+}
+.brand{
+  font-size:28px!important;
+  line-height:.95!important;
+  letter-spacing:.20em!important;
+  margin:0!important;
+}
+.editorial-tagline{
+  font-size:11px!important;
+  line-height:1!important;
+  margin-top:4px!important;
+  margin-bottom:1px!important;
+}
+.brand-mark{
+  transform:scale(.9)!important;
+  transform-origin:right bottom!important;
+  margin-bottom:8px!important;
+}
+.app{
+  top:64px!important;
+  bottom:108px!important;
+}
+.nav{
+  bottom:14px!important;
+  height:94px!important;
+  min-height:94px!important;
+  max-height:94px!important;
+  padding:8px 18px 14px!important;
+  box-shadow:0 -3px 12px rgba(47,43,39,.05)!important;
+}
+
+/* CK shell v7 — reference-matched header spacing + centered/lifted footer */
+.global-header{
+  height:58px!important;
+  min-height:58px!important;
+  max-height:58px!important;
+  padding:2px 30px 5px!important;
+  align-items:flex-start!important;
+}
+.global-header > div:first-child{
+  margin-top:1px!important;
+}
+.brand{
+  font-size:28px!important;
+  line-height:.95!important;
+  letter-spacing:.20em!important;
+}
+.editorial-tagline{
+  font-size:11px!important;
+  line-height:1!important;
+  margin-top:4px!important;
+}
+.brand-mark{
+  align-self:center!important;
+  margin:0!important;
+}
+.app{
+  top:58px!important;
+  bottom:116px!important;
+}
+.nav{
+  bottom:22px!important;
+  height:94px!important;
+  min-height:94px!important;
+  max-height:94px!important;
+  padding:0 18px!important;
+  align-items:center!important;
+}
+.nav > *{
+  align-self:center!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+}
+.nav .plus{
+  margin:0 auto!important;
+  align-self:center!important;
+}
+
+/* CK shell v8 — ultra-tight header, true centered footer contents */
+.global-header{
+  height:48px!important;
+  min-height:48px!important;
+  max-height:48px!important;
+  padding:0 30px 3px!important;
+  align-items:flex-start!important;
+  overflow:hidden!important;
+}
+.global-header > div:first-child{
+  margin:0!important;
+  padding:0!important;
+  transform:translateY(-1px)!important;
+}
+.brand{
+  font-size:28px!important;
+  line-height:.88!important;
+  letter-spacing:.20em!important;
+  margin:0!important;
+  padding:0!important;
+}
+.editorial-tagline{
+  font-size:11px!important;
+  line-height:.9!important;
+  margin:3px 0 0!important;
+  padding:0!important;
+}
+.brand-mark{
+  align-self:center!important;
+  margin:0!important;
+  transform:scale(.9)!important;
+  transform-origin:right center!important;
+}
+.app{
+  top:48px!important;
+  bottom:116px!important;
+}
+.nav{
+  bottom:22px!important;
+  height:94px!important;
+  min-height:94px!important;
+  max-height:94px!important;
+  padding:0 18px!important;
+  align-items:center!important;
+}
+.nav > button,
+.nav > div,
+.nav > a{
+  height:100%!important;
+  min-height:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.nav .plus{
+  width:52px!important;
+  height:52px!important;
+  min-width:52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  padding:0!important;
+  margin:0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1!important;
+}
+
+/* CK shell v9 — thinner header bar, same logo/tagline sizing */
+.global-header{
+  height:42px!important;
+  min-height:42px!important;
+  max-height:42px!important;
+  padding:0 30px!important;
+  align-items:flex-start!important;
+}
+.global-header > div:first-child{
+  margin:0!important;
+  padding:0!important;
+  transform:translateY(-2px)!important;
+}
+.brand{
+  font-size:28px!important;
+  line-height:.84!important;
+  letter-spacing:.20em!important;
+}
+.editorial-tagline{
+  font-size:11px!important;
+  line-height:.86!important;
+  margin-top:2px!important;
+}
+.brand-mark{
+  align-self:center!important;
+}
+.app{
+  top:42px!important;
+}
+
+/* CK shell v10 — thin header without clipping letters */
+.global-header{
+  height:54px!important;
+  min-height:54px!important;
+  max-height:54px!important;
+  padding:2px 30px 3px!important;
+  align-items:center!important;
+  overflow:visible!important;
+}
+.global-header > div:first-child{
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+}
+.brand{
+  font-size:28px!important;
+  line-height:1.05!important;
+  letter-spacing:.20em!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+.editorial-tagline{
+  font-size:11px!important;
+  line-height:1.05!important;
+  margin:2px 0 0!important;
+  padding:0!important;
+}
+.brand-mark{
+  align-self:center!important;
+}
+.app{
+  top:54px!important;
+}
+
+/* CK shell v11 — visually center footer controls */
+.nav{
+  padding:0 18px!important;
+}
+.nav > button,
+.nav > div,
+.nav > a{
+  transform:translateY(-9px)!important;
+}
+.nav .plus{
+  transform:translateY(-9px)!important;
+}
+
+/* CK shell v12 — footer controls slightly higher */
+.nav > button,
+.nav > div,
+.nav > a{
+  transform:translateY(-14px)!important;
+}
+.nav .plus{
+  transform:translateY(-14px)!important;
+}
+</style></head><body><header class="global-header"><div><div class="brand">Chaoskeeper</div><div class="editorial-tagline">all the things · one place</div></div><div class="botanical-rule">·</div></header><main class="app">
+<section id="home"><div class="head"><div><div style="font-family:Didot,'Bodoni 72',serif;font-size:23px;letter-spacing:.10em;font-weight:400">HOME</div><div class="muted" id="date"></div></div><span class="pill">V1</span></div>
+<div class="card"><h3>TODAY</h3><div class="row"><span class="time">8:30 AM</span><span>Daycare drop-off</span></div><div class="row"><span class="time">2:00 PM</span><span>Dentist appointment</span></div><div class="row meal"><b class="time">Dinner</b><span>Tacos + fruit</span></div></div>
+<div class="card"><h3>TO DO</h3><div id="todayTodo"></div></div>
+<div class="card house"><h3>HOUSEHOLD</h3><div id="todayHouse"></div></div>
+<div class="card money"><h3>MONEY</h3><div class="row"><input type="checkbox"><span>Weekly Money Check — $675 needed next week</span></div></div>
+<div class="card" style="cursor:pointer" onclick="view('week')"><h3>THIS WEEK →</h3><div class="summary"><div class="mini"><b id="count">0</b>To-Dos</div><div class="mini"><b>3</b>Household</div><div class="mini"><b>$675</b>Money</div></div></div>
+<div class="card"><h3>COMING UP</h3><div class="row"><span class="time">Oct 9</span><span>Water bill due</span></div><div class="row"><span class="time">Oct 12</span><span>Birthday</span></div></div>
+<div class="card"><h3>WAITING ON</h3><div class="row"><span class="grow">Garage quote</span><span class="pill">Follow up Fri</span></div></div>
+<div class="card"><h3>BRAIN DUMP</h3><div class="row"><span>3 things waiting to organize</span></div></div></section>
+
+<section id="week" class="hidden"><div class="head"><div><div class="brand">This Week</div><div class="muted">Weekly Planning</div></div><button class="link" onclick="view('home')">Home</button></div>
+<div class="jump"><button onclick="jump('todos')">To Do</button><button onclick="jump('meals')">Meals</button><button onclick="jump('shop')">Shopping</button><button onclick="jump('cash')">Money</button><button onclick="jump('chores')">Household</button><button onclick="jump('up')">Upcoming</button><button onclick="jump('reset')">Reset</button></div>
+<div id="todos" class="card"><h3>MUST DO THIS WEEK</h3><div id="must"></div><h3 style="margin-top:18px">OTHER TO-DOS</h3><div id="other"></div></div>
+<div id="meals" class="card"><h3>MEALS</h3><div id="mealList"></div></div>
+<div id="shop" class="card"><h3>SHOPPING</h3><div class="row">Grocery <span class="grow"></span><b>6</b></div><div class="row">Target <span class="grow"></span><b>4</b></div></div>
+<div id="cash" class="card money"><h3>MONEY THIS WEEK</h3><div class="row"><input type="checkbox"><span class="grow">Weekly Money Check</span><b>$675</b></div><div class="muted">Checking $400 · Savings $275</div></div>
+<div id="chores" class="card house"><h3>HOUSEHOLD THIS WEEK</h3><div id="weekHouse"></div></div>
+<div id="up" class="card"><h3>UPCOMING</h3><div class="row">Dentist appointment — Tuesday</div><div class="row">Daycare closed — Friday</div></div>
+<div id="reset" class="card"><h3>WEEKLY RESET</h3><div id="resetList"></div></div>
+<div class="card completed"><h3>✓ COMPLETED — <span id="doneCount">0</span></h3><div id="done"></div></div></section>
+
+<section id="calendar" class="hidden"><div class="brand">Calendar</div><div class="card"><h3>GOOGLE CALENDAR</h3><p class="muted">Month + Looking Ahead shell is ready. Live Google OAuth comes in the hosted backend phase.</p></div></section>
+<section id="shopping" class="hidden"><div class="brand">Shopping</div><div class="card"><h3>BY STORE</h3><div class="row">Grocery <span class="grow"></span>6</div><div class="row">Target <span class="grow"></span>4</div><div class="row">Amazon <span class="grow"></span>2</div></div></section>
+<section id="more" class="hidden"><div class="brand">More</div><div class="card"><h3>FAMILY & PEOPLE</h3><div class="row">Kids</div><div class="row">People</div><div class="row">Gifts</div></div><div class="card"><h3>HOME & MONEY</h3><div class="row">Household</div><div class="row">Money</div></div><div class="card"><h3>MY LISTS</h3><div class="row">Master To-Do</div><div class="row">Waiting On</div><div class="row">Notes / Remember</div><div class="row">Brain Dump</div></div><div class="card"><h3>SETTINGS</h3><div class="row">Account, Household & Sync</div><div class="row">Google Calendar</div><div class="row">Appearance & Notifications</div></div></section>
+</main>
+<nav class="nav"><button data-v="home" class="active" onclick="view('home')">Home</button><button data-v="calendar" onclick="view('calendar')">Calendar</button><button class="plus" onclick="quick()">＋</button><button data-v="shopping" onclick="view('shopping')">Shopping</button><button data-v="more" onclick="view('more')">More</button></nav>
+<div id="modal" class="modal hidden" onclick="if(event.target===this)closeQ()">
+  <div class="sheet quick-sheet">
+    <div class="head">
+      <div>
+        <h2 class="quick-title">QUICK ADD</h2>
+        <div class="quick-sub">Put it somewhere before you forget it.</div>
+      </div>
+      <button class="link" onclick="closeQ()">Close</button>
+    </div>
+    <button class="brain-hero" onclick="form('brain')">
+      <span class="brain-label">BRAIN DUMP</span>
+      <span class="brain-copy">Just type it. Sort it later.</span>
+    </button>
+    <div id="menu" class="quick-grid">
+      <button class="action" onclick="form('todo')">To Do</button>
+      <button class="action" onclick="form('house')">Household</button>
+      <button class="action" onclick="form('schedule')">Calendar Event</button>
+      <button class="action" onclick="form('buy')">Shopping Item</button>
+      <button class="action" onclick="form('meal')">Meal</button>
+      <button class="action" onclick="form('note')">Note / Remember</button>
+      <button class="action" onclick="form('waiting')">Waiting On</button>
+      <button class="action" onclick="form('gift')">Gift Idea</button>
+      <button class="action" onclick="form('expense')">Upcoming Expense</button>
+      <button class="action" onclick="form('date')">Important Date</button>
+    </div>
+    <div id="form" class="hidden">
+      <div class="quick-form-label" id="formLabel">ADD ITEM</div>
+      <input id="text" class="field" placeholder="What is it?">
+      <select id="when" class="field"><option>Today</option><option>This Week</option><option>This Month</option><option>Later</option><option>No timeframe</option></select>
+      <select id="kind" class="field"><option value="todo">Regular To Do</option><option value="house">Household</option></select>
+      <button class="primary" onclick="save()">Save</button>
+      <button class="quick-back" onclick="quickBack()">Back to Quick Add</button>
+    </div>
+  </div>
+</div>
+<script>
+const seed={tasks:[{id:1,text:"Call dentist",kind:"todo",when:"Today",must:true},{id:2,text:"Order birthday present",kind:"todo",when:"This Week",must:true},{id:3,text:"Aflac paperwork",kind:"todo",when:"This Week",must:false},{id:4,text:"Water plants",kind:"house",when:"Today"},{id:5,text:"Clean bathrooms",kind:"house",when:"This Week"}],done:[],meals:{Mon:"Chicken pasta",Tue:"Tacos + fruit",Wed:"Leftovers",Thu:"Sheet-pan chicken",Fri:"Pizza",Sat:"Grill",Sun:"Soup"}};let s=JSON.parse(localStorage.getItem("mbv1")||"null")||seed,qtype="todo";
+function store(){localStorage.setItem("mbv1",JSON.stringify(s));render()}function row(t){return `<div class="row"><input type="checkbox" onchange="finish(${t.id})"><span>${t.text}</span></div>`}function finish(id){let i=s.tasks.findIndex(x=>x.id===id);if(i>=0)s.done.unshift(...s.tasks.splice(i,1));store()}function undo(id){let i=s.done.findIndex(x=>x.id===id);if(i>=0)s.tasks.push(...s.done.splice(i,1));store()}
+function render(){todayTodo.innerHTML=s.tasks.filter(x=>x.kind==="todo"&&x.when==="Today").map(row).join("")||'<span class="muted">Nothing due today.</span>';todayHouse.innerHTML=s.tasks.filter(x=>x.kind==="house"&&x.when==="Today").map(row).join("")||'<span class="muted">Nothing due today.</span>';must.innerHTML=s.tasks.filter(x=>x.kind==="todo"&&x.when==="This Week"&&x.must).map(row).join("")||'<span class="muted">Nothing here.</span>';other.innerHTML=s.tasks.filter(x=>x.kind==="todo"&&x.when==="This Week"&&!x.must).map(row).join("")||'<span class="muted">Nothing here.</span>';weekHouse.innerHTML=s.tasks.filter(x=>x.kind==="house"&&["Today","This Week"].includes(x.when)).map(row).join("");count.textContent=s.tasks.filter(x=>x.kind==="todo"&&["Today","This Week"].includes(x.when)).length;mealList.innerHTML=Object.entries(s.meals).map(([d,m])=>`<div class="row"><b class="time">${d}</b><input class="field" value="${m}" onchange="s.meals['${d}']=this.value;store()"></div>`).join("");resetList.innerHTML=["Clear Brain Dump","Review Coming Up","Review Waiting On","Choose Must-Dos","Plan meals","Check Shopping"].map(x=>`<div class="row"><input type="checkbox"><span>${x}</span></div>`).join("");doneCount.textContent=s.done.length;done.innerHTML=s.done.map(x=>`<div class="row"><input type="checkbox" checked onchange="undo(${x.id})"><span class="grow">${x.text}</span><span class="pill">${x.kind==="house"?"Household":"To Do"}</span></div>`).join("")||'<span class="muted">Completed items move here.</span>'}
+function view(id){document.querySelectorAll("main>section").forEach(x=>x.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");document.querySelectorAll(".nav [data-v]").forEach(x=>x.classList.toggle("active",x.dataset.v===id));scrollTo(0,0)}function jump(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}function quick(){
+const modalEl=document.getElementById("modal");
+const menuEl=document.getElementById("menu");
+const formEl=document.getElementById("form");
+const brainEl=document.querySelector(".brain-hero");
+modalEl.classList.remove("hidden");
+menuEl.classList.remove("hidden");
+formEl.classList.add("hidden");
+if(brainEl) brainEl.classList.remove("hidden");
+}function closeQ(){
+document.getElementById("modal").classList.add("hidden");
+quickBack();
+}
+function quickBack(){
+document.getElementById("form").classList.add("hidden");
+document.getElementById("menu").classList.remove("hidden");
+const b=document.querySelector(".brain-hero");if(b)b.classList.remove("hidden");
+document.getElementById("text").value="";
+}function form(t){
+qtype=t;
+const menuEl=document.getElementById("menu");
+const formEl=document.getElementById("form");
+const kindEl=document.getElementById("kind");
+const whenEl=document.getElementById("when");
+const brainEl=document.querySelector(".brain-hero");
+menuEl.classList.add("hidden");
+if(brainEl) brainEl.classList.add("hidden");
+formEl.classList.remove("hidden");
+kindEl.style.display=(t==="todo"||t==="house")?"block":"none";
+whenEl.style.display=["todo","house","buy","schedule","expense","date"].includes(t)?"block":"none";
+kindEl.value=t==="house"?"house":"todo";
+const names={todo:"TO DO",house:"HOUSEHOLD",schedule:"CALENDAR EVENT",buy:"SHOPPING ITEM",meal:"MEAL",note:"NOTE / REMEMBER",waiting:"WAITING ON",brain:"BRAIN DUMP",gift:"GIFT IDEA",expense:"UPCOMING EXPENSE",date:"IMPORTANT DATE"};
+const label=document.getElementById("formLabel");
+if(label) label.textContent=names[t]||"ADD ITEM";
+setTimeout(()=>document.getElementById("text").focus(),50);
+}function save(){let v=text.value.trim();if(!v)return;if(["brain","waiting","note"].includes(qtype)){alert(v+" saved in the "+qtype+" prototype queue.");closeQ();return}s.tasks.push({id:Date.now(),text:v,kind:qtype==="todo"?kind.value:"todo",when:when.value,must:false});text.value="";store();closeQ()}const prettyDate=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"});date.textContent=prettyDate;render();if("serviceWorker"in navigator)navigator.serviceWorker.register("./sw.js");
+</script></body></html>
